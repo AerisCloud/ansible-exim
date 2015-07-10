@@ -1,0 +1,6 @@
+- name: "restart exim"
+  service: >
+    name={{exim_service_name}}
+    state=restarted
+  tags:
+    - exim

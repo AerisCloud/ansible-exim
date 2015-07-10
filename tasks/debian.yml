@@ -1,0 +1,32 @@
+- name: "Define proper service name"
+  set_fact:
+    exim_service_name: "exim4"
+  tags:
+    - exim
+
+- name: "Install exim (exim4) the mail transfer agent"
+  apt: >
+    name=exim4-daemon-{{exim_debian_flavor}}
+    state=present
+  tags:
+    - exim
+
+- name: "Copy the template configuration"
+  template: >
+    src=update-exim4.conf.conf
+    dest=/etc/exim4/update-exim4.conf.conf
+    owner=root
+    group=root
+    mode=0644
+  notify:
+    - restart exim
+  tags:
+    - exim
+
+- name: "Make sure the exim (exim4) is still running"
+  service: >
+    name=exim4
+    state=running
+    enabled=yes
+  tags:
+    - exim
