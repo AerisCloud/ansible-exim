@@ -1,0 +1,13 @@
+- name: "Define proper service name"
+  set_fact:
+    exim_service_name: "exim"
+  tags:
+    - exim
+
+- name: "Install exim the mail transfer agent"
+  yum: >
+    name=exim
+    state=present
+    enablerepo=epel
+  tags:
+    - exim

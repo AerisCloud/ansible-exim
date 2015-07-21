@@ -1,0 +1,29 @@
+galaxy_info:
+  author: Stéphan Donin <sdonin@wizcorp.jp>
+  description: Installs exim on a server
+  company: Wizcorp K.K.
+  license: MIT
+  min_ansible_version: 1.8.1
+  platforms:
+    - name: EL
+      versions:
+        - 6
+        - 7
+    - name: Debian
+      versions:
+        - wheezy
+    - name: ubuntu
+      versions:
+        - trusty
+        - vivid
+  categories:
+    - web
+    - mail
+dependencies:
+  - role: aeriscloud.repos
+    repositories:
+      centos6:
+        - epel
+      centos7:
+        - epel
+  - role: aeriscloud.yum
